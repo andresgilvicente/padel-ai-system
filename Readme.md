@@ -157,4 +157,5 @@ streamlit run security_system/security_system_app.py
 * **Jorge Carnicero Príncipe**
 * **Andrés Gil Vicente** 
 
+*Fecha de finalización: 10 de enero de 2026*
 
