@@ -5,7 +5,7 @@
   </a>
 
   <h1>🎾 Padel AI System</h1>
-  <p><strong>Visión por Ordenador aplicada a la Seguridad y el Análisis Deportivo</strong></p>
+  <p><strong>Computer Vision applied to Security and Sports Analysis</strong></p>
 
   <p>
     <a href="https://www.python.org/">
@@ -26,135 +26,141 @@
 <hr />
 
 
-## 📖 Introducción
+## 📖 Introduction
 
-**Padel AI System** es un proyecto integral de Visión por Ordenador desarrollado para la asignatura *Visión por Ordenador I* en la **Universidad Pontificia Comillas (ICAI)**
+**Padel AI System** is a comprehensive Computer Vision project developed for the *Computer Vision I* course at **Universidad Pontificia Comillas (ICAI)**.
 
-Este sistema implementa una solución de dos módulo utilizando una única cámara de un dispositivo móvil:
-1.  **Sistema de Seguridad:** Un módulo de control de acceso basado en el reconocimiento de patrones geométricos que actúa como una contraseña visual.
-2.  **Sistema de Tracking (Juez de Silla IA):** Un motor de análisis deportivo autónomo capaz de rastrear una pelota de pádel, detectar jugadores mediante estimación de pose y validar saques (Válido/Falta) en tiempo real.
+This system implements a two-module solution using a single mobile device camera:
+1.  **Security System:** An access control module based on geometric pattern recognition that acts as a visual password.
+2.  **Tracking System (AI Chair Umpire):** An autonomous sports analysis engine capable of tracking a padel ball, detecting players via pose estimation, and validating serves (Valid/Fault) in real-time.
 
-## 📂 Estructura del Repositorio
+## 📂 Repository Structure
 
-El proyecto está organizado en directorios modulares para garantizar la escalabilidad y el orden:
+The project is organized into modular directories to ensure scalability and order:
 
 ```text
-├── 📂 assets/                   # Imágenes y contenido visual, por ejemplo para el banner del ReadMe.md
-├── 📂 calibration_process/      # Scripts e imágenes para la calibración intrínseca de la cámara
-├── 📂 complete_padel_system/    # Aplicación unificada integrando Seguridad + Tracker
-├── 📂 security_system/          # Módulo independiente de reconocimiento de patrones geométricos
-├── 📂 tracking_system/          # Módulo independiente de seguimiento de bola y lógica de arbitraje
-├── 📄 .gitignore                # Configuración de Git
-├── 📄 ReadMe.md                 # Documentación del proyecto
-└── 📄 documentation.pdf         # Informe final y documentación del proyecto
-└── 📄 requirements.txt          # Dependencias y librerías necesarias
+├── 📂 assets/                   # Images and visual content, e.g., for the ReadMe.md banner
+├── 📂 calibration_process/      # Scripts and images for intrinsic camera calibration
+├── 📂 complete_padel_system/    # Unified application integrating Security + Tracker
+├── 📂 security_system/          # Independent geometric pattern recognition module
+├── 📂 tracking_system/          # Independent ball tracking and umpire logic module
+├── 📄 .gitignore                # Git configuration
+├── 📄 ReadMe.md                 # Project documentation
+└── 📄 documentation.pdf         # Final report and project documentation
+└── 📄 requirements.txt          # Dependencies and required libraries
+
 ```
 
-## 🛠️ Tecnologías y Metodología
+## 🛠️ Technologies and Methodology
 
-El sistema se basa en un enfoque híbrido que combina **Visión por Ordenador Clásica** y algoritmos más avanzados como los que ofrece la librería de **YOLO**:
+The system relies on a hybrid approach combining **Classical Computer Vision** and advanced algorithms such as those offered by the **YOLO** library:
 
 * **Core Framework:** Python 3, OpenCV (cv2).
-* **Deep Learning:** YOLOv8-Pose (Ultralytics) para la extracción de puntos clave del jugador (cintura/pies).
+* **Deep Learning:** YOLOv8-Pose (Ultralytics) for player keypoint extraction (waist/feet).
+* **Classical Techniques:**
+  * HSV color segmentation and MOG2 background subtraction for ball detection.
+  * Optical Flow (Lucas-Kanade) for trajectory smoothing.
+  * Kalman Filters for state prediction and occlusion handling.
+  * Geometric approximation (Douglas-Peucker) on the *Convex Hull* for the security module.
+  * Use of morphological operations, thresholding, binarization, etc.
 
 
-* **Técnicas Clásicas:**
-    * Segmentación de color HSV y sustracción de fondo MOG2 para detección de la pelota.
-    * Flujo Óptico (Lucas-Kanade) para el suavizado de trayectorias.
-    * Filtros de Kalman para la predicción de estado y manejo de oclusiones.
-    * Aproximación geométrica (Douglas-Peucker) sobre el *Convex Hull* para el módulo de seguridad.
-    * Uso de operaciones morfológicos, thresholding, binarización, etc.
+* **Interface:** Streamlit for the web dashboard and real-time visualization.
+* **Optimization:** Multithreading for video capture and optional TensorRT support for inference.
 
+## 🚀 Installation and Setup
 
-* **Interfaz:** Streamlit para el dashboard web y visualización en tiempo real.
-* **Optimización:** Multihilo (*Threading*) para la captura de vídeo y soporte opcional de TensorRT para la inferencia.
+### Prerequisites
 
-## 🚀 Instalación y Configuración
+Ensure you have **Python 3.9** or higher installed.
 
-### Requisitos Previos
-
-Asegúrese de tener instalado **Python 3.9** o superior.
-
-### 1. Clonar el Repositorio
+### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/jorgecarnicero/ProyectoFinalComputerVision.git
+git clone https://github.com/andresgilvicente/padel-ai-system.git
+
 
 ```
 
-### 2. Crear Entorno Virtual (Recomendado)
+### 2. Create Virtual Environment (Recommended)
 
 ```bash
-python -m venv venv # En Windows
+python -m venv venv # On Windows
 
-.\venv\Scripts\activate # En Mac/Linux
+.\venv\Scripts\activate # On Mac/Linux
 
 source venv/bin/activate
 
+
 ```
 
-### 3. Instalar Dependencias
+### 3. Install Dependencies
 
-Todas las librerías necesarias se encuentran listadas en `requirements.txt`.
+All necessary libraries are listed in `requirements.txt`.
 
 ```bash
 pip install -r requirements.txt
 
+
 ```
 
-## 🖥️ Ejecución
+## 🖥️ Execution
 
-Puede ejecutar los módulos de forma independiente o como un sistema completo.
+You can run the modules independently or as a complete system.
 
-### Opción A: Sistema Completo (Seguridad + Tracker)
+### Option A: Complete System (Security + Tracker)
 
-Ejecuta el flujo completo. Deberá superar el control de seguridad (mostrar 4 formas geométricas) para desbloquear el tracker.
+Executes the full flow. You must pass the security check (show 4 geometric shapes) to unlock the tracker.
 
 ```bash
 streamlit run complete_padel_system/complete_padel_system_app.py
 
+
 ```
 
-### Opción B: Sistema de Tracking (Solo Árbitro)
+### Option B: Tracking System (Umpire Only)
 
-Lanza directamente el Juez de Silla IA para análisis o depuración.
+Launches the AI Chair Umpire directly for analysis or debugging.
 
 ```bash
 streamlit run tracking_system/tracking_system_app.py
 
+
 ```
 
-### Opción C: Sistema de Seguridad
+### Option C: Security System
 
-Prueba la lógica de reconocimiento de patrones geométricos de forma aislada.
+Tests the geometric pattern recognition logic in isolation.
 
 ```bash
 streamlit run security_system/security_system_app.py
 
+
 ```
 
-## 📊 Descripción de Funcionalidades
+## 📊 Feature Description
 
-🔒 Módulo de Seguridad 
+🔒 Security Module
 
-* **Detección de Formas:** Identifica Líneas, Triángulos, Cuadrados, Rectángulos, Círculos y Pentágonos mediante análisis de contornos y *convex hulls*.
-* **Decodificador de Secuencia:** Desbloquea el sistema únicamente cuando se detecta una secuencia específica de 4 formas geométricas predefinidas.
+* **Shape Detection:** Identifies Lines, Triangles, Squares, Rectangles, Circles, and Pentagons using contour analysis and *convex hulls*.
+* **Sequence Decoder:** Unlocks the system only when a specific sequence of 4 predefined geometric shapes is detected.
 
-🎾 Módulo de Tracking (Juez IA) 
+🎾 Tracking Module (AI Umpire)
 
-* **Seguimiento de Bola:** Detección híbrida usando Color/Movimiento + Predicción por Filtro de Kalman.
-* **Validación de Saque:**
-  * Detecta el impacto del saque basado en picos de aceleración.
-  * Compara la altura de la pelota vs. la altura de la cintura del jugador (Keypoints YOLO).
-  * Clasifica el saque como **VALID (Válido)** o **FAULT (Falta)**.
+* **Ball Tracking:** Hybrid detection using Color/Motion + Kalman Filter Prediction.
+* **Serve Validation:**
+  * Detects serve impact based on acceleration peaks.
+  * Compares ball height vs. player waist height (YOLO Keypoints).
+  * Classifies the serve as **VALID** or **FAULT**.
 
 
-* **Detección de Bote:** Analiza la trayectoria en el eje Y para detectar cambios de dirección (rebotes) en la pista.
-* **Generación de Evidencia:** Guarda automáticamente fotogramas "Foto Finish" de cada saque analizado.
+* **Bounce Detection:** Analyzes the trajectory on the Y-axis to detect direction changes (bounces) on the court.
+* **Evidence Generation:** Automatically saves "Photo Finish" frames of each analyzed serve.
 
-## 👥 Autores
+## 👥 Authors
 
 * **Jorge Carnicero Príncipe**
-* **Andrés Gil Vicente** 
+* **Andrés Gil Vicente**
 
+*Completion Date: January 10, 2026*
 
