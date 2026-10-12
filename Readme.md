@@ -7,6 +7,8 @@
   <h1>🎾 Padel AI System</h1>
   <p><strong>Computer Vision applied to Security and Sports Analysis</strong></p>
 
+  <p><strong>Development period:</strong> September-December 2026</p>
+
   <p>
     <a href="https://www.python.org/">
       <img src="https://img.shields.io/badge/Python-3.9%2B-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python 3.9+">
@@ -161,6 +163,4 @@ streamlit run security_system/security_system_app.py
 
 * **Jorge Carnicero Príncipe**
 * **Andrés Gil Vicente**
-
-*Completion Date: January 10, 2026*
 
