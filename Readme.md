@@ -7,7 +7,7 @@
   <h1>🎾 Padel AI System</h1>
   <p><strong>Computer Vision applied to Security and Sports Analysis</strong></p>
 
-  <p><strong>Development period:</strong> September-December 2026</p>
+  <p><strong>Development period:</strong> September 2025 - January 2026</p>
 
   <p>
     <a href="https://www.python.org/">
