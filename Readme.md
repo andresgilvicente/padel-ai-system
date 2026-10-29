@@ -87,10 +87,12 @@ git clone https://github.com/andresgilvicente/padel-ai-system.git
 ### 2. Create Virtual Environment (Recommended)
 
 ```bash
-python -m venv venv # On Windows
+python -m venv venv
 
-.\venv\Scripts\activate # On Mac/Linux
+# Windows
+.\venv\Scripts\activate
 
+# Mac/Linux
 source venv/bin/activate
 
 
